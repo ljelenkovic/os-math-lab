@@ -1,0 +1,5 @@
+datoteka1.txt
+p
+0123456789abcdefghijklmnoprstuvzyw
+100
+kraj
