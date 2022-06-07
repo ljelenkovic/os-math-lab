@@ -14,9 +14,11 @@ void inicijaliziraj_prazni_disk()
 	int i, j;
 
 	memset(datotecna_tablica, 0, sizeof(struct opisnik) * MAX_DATOTEKA);
-	for (i = 0; i < MAX_DATOTEKA; i++)
+	for (i = 0; i < MAX_DATOTEKA; i++) {
+		datotecna_tablica[i].kazaljka = -1;
 		for (j = 0; j < BLOCKS; j++)
 			datotecna_tablica[i].blokovi[j] = -1;
+	}
 	memset(slobodni_blokovi, 0, BLOCKS);
 }
 int otvori_datoteku(char *ime, int nacin)
