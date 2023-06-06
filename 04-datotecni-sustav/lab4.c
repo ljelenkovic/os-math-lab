@@ -41,10 +41,11 @@ int main() {
 			if (posn)
 				*posn = '\0';
 			printf("Koliko puta da ga upisem u datoteku?\n");
-			fgets(naredba, TEXT, stdin);
+			fgets(naredba, 10, stdin);
 			sscanf(naredba, "%d", &koliko_puta);
 			for (i = 0; i < koliko_puta; i++)
 				zapisi(fd, tekst, strlen(tekst));
+			zatvori_datoteku(fd);
 		}
 		else {
 			fprintf(stderr, "Kriva naredba\n");

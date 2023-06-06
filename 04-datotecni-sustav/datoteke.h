@@ -13,7 +13,7 @@
 struct opisnik {
 	char ime[IME_DULJINA];
 	size_t velicina;
-	size_t kazaljka; //koristi se pri radu s tom datotekom
+	ssize_t kazaljka; //koristi se pri radu s tom datotekom
 	int nacin_rada;
 	int blokovi[BLOCKS];
 };
