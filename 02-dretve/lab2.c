@@ -9,6 +9,7 @@
 #include "signali.h"
 #include "datoteke.h"
 
+//globalne varijable; koriste se (ili će se koristiti) u funkcijama i obradama signala
 char *dat_status, *dat_obrada, *dat_mreza;
 int broj = 0;
 int nije_kraj = 1;

@@ -5,6 +5,7 @@
 #include <unistd.h>
 #include <math.h>
 
+//globalne varijable; koriste se (ili će se koristiti) u funkcijama i obradama signala
 char *dat_stat, *dat_obrada;
 int broj = 0;
 
@@ -53,7 +54,7 @@ int main(int argc, char *argv[])
 
 int procitaj_status()
 {
-	int broj;
+	int br;
 	FILE *fp;
 
 	fp = fopen(dat_stat, "r");
@@ -61,15 +62,15 @@ int procitaj_status()
 		printf("Ne mogu otvoriti %s\n", dat_stat);
 		exit(1);
 	}
-	if (fscanf(fp, "%d", &broj) != 1) {
+	if (fscanf(fp, "%d", &br) != 1) {
 		printf("Nije procitan broj iz %s!\n", dat_stat);
 		exit(1);
 	}
 	fclose(fp);
-	return broj;
+	return br;
 }
 
-void zapisi_status(int broj)
+void zapisi_status(int br)
 {
 	FILE *fp;
 
@@ -78,14 +79,14 @@ void zapisi_status(int broj)
 		printf("Ne mogu otvoriti %s\n", dat_stat);
 		exit(1);
 	}
-	if (fprintf(fp, "%d\n", broj) < 1) {
+	if (fprintf(fp, "%d\n", br) < 1) {
 		printf("Nije upisan broj u %s!\n", dat_stat);
 		exit(1);
 	}
 	fclose(fp);
 }
 
-void dodaj_broj(int broj)
+void dodaj_broj(int br)
 {
 	FILE *fp;
 
@@ -94,7 +95,7 @@ void dodaj_broj(int broj)
 		printf("Ne mogu otvoriti %s\n", dat_obrada);
 		exit(1);
 	}
-	if (fprintf(fp, "%d\n", broj) < 1) {
+	if (fprintf(fp, "%d\n", br) < 1) {
 		printf("Nije upisan broj u %s!\n", dat_obrada);
 		exit(1);
 	}
@@ -104,7 +105,7 @@ void dodaj_broj(int broj)
 int pronadji_zadnji_broj()
 {
 	FILE *fp;
-	int broj = -1;
+	int br = -1;
 
 	fp = fopen(dat_obrada, "r");
 	if (!fp) {
@@ -112,8 +113,8 @@ int pronadji_zadnji_broj()
 		exit(1);
 	}
 	while(!feof(fp))
-		if (fscanf(fp, "%d", &broj) != 1)
+		if (fscanf(fp, "%d", &br) != 1)
 			break;
 	fclose(fp);
-	return broj;
+	return br;
 }

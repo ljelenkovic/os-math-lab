@@ -66,7 +66,7 @@ void obradi_dogadjaj(int sig)
 
 void obradi_sigterm(int sig)
 {
-	printf("Primio signal SIGTERM, pospremam prije izlazska iz programa\n");
+	printf("Primio signal SIGTERM, pospremam prije izlaska iz programa\n");
 	nije_kraj = 0;
 }
 
