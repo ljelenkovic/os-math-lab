@@ -2,10 +2,11 @@
 
 CFLAGS = -Wall -MMD
 LDFLAGS = -O
-LDLIBS = 
+LDLIBS = -lm -lpthread
 
-PROGRAM = lab4
-OBJEKTI = lab4.o datoteke.o disk.o
+PROGRAM = lab1
+OBJEKTI = lab1.o medjuspremnik.o slucajni_brojevi.o
+STATUS = status.txt
 
 $(PROGRAM): $(OBJEKTI)
 	$(CC) $(LDFLAGS) $(OBJEKTI) $(LDLIBS) -o $(PROGRAM)
@@ -17,10 +18,7 @@ H_VEZE := $(OBJEKTI:.o=.d)
 pokreni: $(PROGRAM)
 	@./$(PROGRAM)
 
-pokreni-test: $(PROGRAM)
-	@./$(PROGRAM) < ispitno-pokretanje.txt
-
 obrisi:
-	-rm -rf $(OBJEKTI) $(H_VEZE) $(PROGRAM)
+	-rm -rf $(OBJEKTI) $(H_VEZE) $(PROGRAM) $(STATUS)
 
 -include $(H_VEZE)
