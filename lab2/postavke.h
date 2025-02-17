@@ -2,10 +2,12 @@
 
 #define DEBUG //komentirati ako se ne želi taj ispis
 #define VEL_M	8
+#define BROJ_DRETVI 3
 
 //da ne bi paralelno pristupali međuspremniku
-//za sada problem može biti zbog signala
+//signali i dretve
 #include <signal.h>
+#include <semaphore.h>
 #include <stdlib.h>
 
 static inline void zakljucaj()
@@ -15,6 +17,8 @@ static inline void zakljucaj()
 	sigaddset(&set, SIGUSR1);
 	sigaddset(&set, SIGTERM);
 	sigprocmask(SIG_BLOCK, &set, NULL);
+	extern sem_t sem;
+	sem_wait(&sem);
 }
 static inline void otkljucaj()
 {
@@ -23,6 +27,8 @@ static inline void otkljucaj()
 	sigaddset(&set, SIGUSR1);
 	sigaddset(&set, SIGTERM);
 	sigprocmask(SIG_UNBLOCK, &set, NULL);
+	extern sem_t sem;
+	sem_post(&sem);
 }
 
 #ifdef DEBUG
