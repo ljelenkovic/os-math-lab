@@ -13,23 +13,21 @@
 #include <signal.h>
 #include <pthread.h>
 
+static sigset_t signali_prije __attribute__((unused));
+
 static inline void zakljucaj()
 {
 	sigset_t set;
 	sigemptyset(&set);
 	sigaddset(&set, SIGUSR1);
 	sigaddset(&set, SIGTERM);
-	sigprocmask(SIG_BLOCK, &set, NULL);
+	sigprocmask(SIG_BLOCK, &set, &signali_prije);
 	extern pthread_mutex_t m;
 	pthread_mutex_lock(&m);
 }
 static inline void otkljucaj()
 {
-	sigset_t set;
-	sigemptyset(&set);
-	sigaddset(&set, SIGUSR1);
-	sigaddset(&set, SIGTERM);
-	sigprocmask(SIG_UNBLOCK, &set, NULL);
+	sigprocmask(SIG_SETMASK, &signali_prije, NULL);
 	extern pthread_mutex_t m;
 	pthread_mutex_unlock(&m);
 }

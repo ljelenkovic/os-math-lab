@@ -84,12 +84,12 @@ static int pocetno_postavljanje()
 	/* 1. maskiranje signala SIGUSR1 */
 	act.sa_handler = obradi_signal;
 	sigemptyset(&act.sa_mask);
+	sigaddset(&act.sa_mask, SIGUSR1);
+	sigaddset(&act.sa_mask, SIGTERM);
 	act.sa_flags = 0;
 	sigaction(SIGUSR1, &act, NULL);
 
 	/* 2. maskiranje signala SIGTERM */
-	act.sa_handler = obradi_signal;
-	sigemptyset(&act.sa_mask);
 	sigaction(SIGTERM, &act, NULL);
 
 	return 0;
