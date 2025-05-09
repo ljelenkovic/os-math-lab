@@ -39,21 +39,21 @@ long uzmi_iz_medjuspremnika()
 
 int zapisi_stanje_medjuspremnika(FILE *fp)
 {
-	zakljucaj();
+	//zakljucaj();
 	//bez provjere grešaka
 	int ima = VEL_M - mjesta;
 	fprintf(fp, "%d\n", ima);
 	int i;
 	for (i = 0; i < ima; i++)
 		fprintf(fp, "%ld\n", medjuspremnik[(prvi + i) % VEL_M]);
-	otkljucaj();
+	//otkljucaj();
 
 	return 0;
 }
 
 int ucitaj_stanje_medjuspremnika(FILE *fp)
 {
-	zakljucaj();
+	//zakljucaj();
 	//bez provjere grešaka
 	int ima;
 	fscanf(fp, "%d\n", &ima);
@@ -63,7 +63,7 @@ int ucitaj_stanje_medjuspremnika(FILE *fp)
 		fscanf(fp, "%ld\n", &broj);
 		dodaj_u_medjuspremnik(broj);
 	}
-	otkljucaj();
+	//otkljucaj();
 
 	return 0;
 }
