@@ -21,11 +21,13 @@ long long lcg_postavi(long long new_seed)
 
 long lcg_gen()
 {
-	//zakljucaj();
+	long tmp;
+	zakljucaj();
 	seed = (A * seed + C) & MOD;
-	//otkljucaj();
+	tmp = (long) (seed >> 16);
+	otkljucaj();
 
-	return (long) (seed >> 16);
+	return tmp;
 }
 
 int lcg_zapisi_stanje(FILE *fp)
